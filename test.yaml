@@ -1,0 +1,24 @@
+---
+- hosts: 20.71.188.192
+  become: true
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+
+  tasks:
+
+
+    - name: Installation python-pip
+      apt:
+        name: python3-pip
+        
+    - name: desInstallation pymysql
+      pip:
+        name: pymysql
+        state: absent
+
+    - name: Installation pymysql
+      pip:
+        name: pymysql
+        state: present

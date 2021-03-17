@@ -1,0 +1,70 @@
+---
+- hosts: 20.71.188.192
+  become: true
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+
+  tasks:
+
+
+    - name: Update apt-get repo and cache
+      apt: update_cache=yes force_apt_get=yes 
+    - name: Upgrade the OS (apt-get dist-upgrade)
+      apt:
+        upgrade: dist
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: 'https://github.com/ilkilab/Multi-Tier-App-Demo'
+        dest: ./Multi-Tier-App-Demo
+
+    - name: Installation Apache2
+      apt:
+        name: apache2
+        state: latest
+
+    - name: Modification page de démarrage
+      copy:
+        src: ./www/index.html
+        dest: /var/www/html/index.html
+
+    - name: Gestion du service Apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Installation python3-pip
+      apt:
+        name: python3-pip
+
+
+    - name: Installation pymysql 
+      pip:
+        name: pymysql
+
+    - name: Download 000-default.conf
+      get_url:
+        url: https://s3.amazonaws.com/richbourg-s3/mtwa/web/000-default.conf
+        dest: /etc/apache2/sites-enabled/
+
+    - name: Download ports.conf
+      get_url:
+        url: https://s3.amazonaws.com/richbourg-s3/mtwa/web/ports.conf
+        dest: /etc/apache2/
+
+
+    - name: Restart service Apache 
+      ansible.builtin.service:
+        name: apache2
+        state: reloaded
+
+
+    - name: execute install.sh
+      ansible.builtin.shell: 
+         cmd: bash install.sh
+      args:
+        chdir: ./Multi-Tier-App-Demo/
+        executable: /bin/bash
