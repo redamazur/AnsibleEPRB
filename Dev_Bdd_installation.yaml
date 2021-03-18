@@ -66,10 +66,10 @@
         regexp: 'bind-address = 127.0.0.1'
         line: bind-address = *
       notify: 
-        - name: restart MySql
+        - name: restartMySql
           
   handlers:    
-    - name: restart MySql
+    - name: restartMySql
       service:
         name: Mysql
         state: reloaded      
