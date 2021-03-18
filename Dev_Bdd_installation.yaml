@@ -33,7 +33,11 @@
     - name: execute install.sh
       shell:
         cmd: mysql -u root -p root
-
+        
+    - name: execute install.sh
+      shell:
+        cmd: pwd
+        
     - name: Simple select query to appdemo db
       community.mysql.mysql_query:
         login_db: appdemo
