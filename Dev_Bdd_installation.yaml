@@ -2,14 +2,6 @@
 - hosts: devbdd
   become: true
   
-  vars:
-    mysql_user_home: /root
-    mysql_user_name: root
-    mysql_user_password: root
-    mysql_root_password_update: false
-    mysql_enabled_on_startup: true
-
-  
   tasks:
     - name: Update apt-get repo and cache
       apt: update_cache=yes force_apt_get=yes
@@ -33,16 +25,12 @@
     - name: execute install.sh
       shell:
         cmd: mysql -u root -p root
-        
-    - name: execute install.sh
-      shell:
-        cmd: pwd
-        
+
     - name: Simple select query to appdemo db
       community.mysql.mysql_query:
         login_db: appdemo
-        login_user: root
-        login_password: root
+#        login_user: root
+#        login_password: root
         query: 
           - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  )
           - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  )
