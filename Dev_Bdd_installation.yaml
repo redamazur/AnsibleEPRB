@@ -38,7 +38,7 @@
 
     - name: Simple select query to appdemo db
       community.mysql.mysql_query:
-        login_db: 
+        login_db: appdemo
         login_user: root
         login_password: root
         query: 
