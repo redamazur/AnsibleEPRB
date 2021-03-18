@@ -82,13 +82,13 @@
 
     - name: execute install.sh
       shell:
-         cmd: cp ~/Multi-Tier-App-Demo/mtwa.conf /etc/mtwa/mtwa.conf
+         cmd: cp /home/azureuser/Multi-Tier-App-Demo/mtwa.conf /etc/mtwa/mtwa.conf
     - name: execute install.sh
       shell:
-         cmd: cp ~/Multi-Tier-App-Demo/html/* /var/www/html/appdemo/
+         cmd: cp /home/azureuser/Multi-Tier-App-Demo/html/* /var/www/html/appdemo/
     - name: execute install.sh
       shell:
-         cmd: cp ~/Multi-Tier-App-Demo/scripts/* /var/www/html/appdemo/
+         cmd: cp /home/azureuser/Multi-Tier-App-Demo/scripts/* /var/www/html/appdemo/
          
 
   handlers:    
