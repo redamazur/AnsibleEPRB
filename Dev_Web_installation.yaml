@@ -53,19 +53,6 @@
         name: pymysql
 
 
-#    - name: changes to how Apache operates.
-#      shell:
-#         cmd: a2enmod mpm_prefork cgi
-#      notify:
-#        - Reload Apache 1
-
-#    - name: changes to how Apache operates 2.
-#      shell:
-#         cmd: a2dismod mpm_event
-#      notify:
-#        - Reload Apache 1
-
-
 
     - name: Download 000-default.conf
       get_url:
