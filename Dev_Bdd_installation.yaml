@@ -17,10 +17,10 @@
       apt:
         name: mysql-server
     - name: Install the MySQL packages
-      apt: name={{ item }} state=installed update_cache=yes
+      apt: name={{ item }} 
       with_items:
-        - mysql-server-5.6
-        - mysql-client-5.6
+        - mysql-server
+        - mysql-client
         - python-mysqldb
         - libmysqlclient-dev
 
