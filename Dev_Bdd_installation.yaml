@@ -55,8 +55,8 @@
         login_user: root
         login_password: root
         query: 
-        - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  );
-        - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  );
+        - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  )
+        - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  )
 
 
 
