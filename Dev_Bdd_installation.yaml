@@ -38,14 +38,14 @@
 
     - name: Simple select query to appdemo db
       community.mysql.mysql_query:
-      login_db: 
-      login_user: root
-      login_password: root
-      query: 
-        - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  )
-        - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  )
-        - CREATE USER 'appdemo'@'%' IDENTIFIED BY 'appdemo'
-        - GRANT ALL PRIVILEGES ON appdemo.* to 'appdemo'@'%' WITH GRANT OPTION
+        login_db: 
+        login_user: root
+        login_password: root
+        query: 
+          - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  )
+          - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  )
+          - CREATE USER 'appdemo'@'%' IDENTIFIED BY 'appdemo'
+          - GRANT ALL PRIVILEGES ON appdemo.* to 'appdemo'@'%' WITH GRANT OPTION
 
 
 
