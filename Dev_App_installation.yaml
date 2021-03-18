@@ -68,13 +68,29 @@
       notify:
         - Reload Apache 2
 
+    - name: Create a directory /etc/mtwa if it does not exist
+      ansible.builtin.file:
+        path: /etc/mtwa
+        state: directory
+        mode: '0755'
+    - name: Create a directory /var/www/html/appdemo if it does not exist
+      ansible.builtin.file:
+        path: /var/www/html/appdemo
+        state: directory
+        mode: '0755'
 
-
-    - name: execute install.sh
-      shell:
-         cmd: /bin/bash install.sh
-      args:
-        chdir: ./Multi-Tier-App-Demo/
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ~/Multi-Tier-App-Demo/mtwa.conf
+        dest: /etc/mtwa/mtwa.conf
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ~/Multi-Tier-App-Demo/html/*
+        dest: /var/www/html/appdemo/
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ~/Multi-Tier-App-Demo/scripts/*
+        dest: /var/www/html/appdemo/
 
   handlers:    
     - name: Reload Apache 2
