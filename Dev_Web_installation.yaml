@@ -27,17 +27,16 @@
         name: apache2
         state: latest
 
-    - name: Modification page de démarrage
-      copy:
-        src: ./www/index.html
-        dest: /var/www/html/index.html
-
     - name: Gestion du service Apache2
       service:
         name: apache2
         state: started
-        state: started
         enabled: yes
+        
+    - name: Modification page de démarrage
+      copy:
+        src: ./www/index.html
+        dest: /var/www/html/index.html
 
     - name: Installation python3-pip
       apt:
@@ -49,46 +48,51 @@
         name: pymysql
 
 
+    - name: changes to how Apache operates.
+      shell:
+         cmd: a2enmod mpm_prefork cgi
+      notify:
+        - Reload Apache 1
+
+    - name: changes to how Apache operates 2.
+      shell:
+         cmd: a2dismod mpm_event
+      notify:
+        - Reload Apache 1
+
 
 
     - name: Download 000-default.conf
       get_url:
         url: https://s3.amazonaws.com/richbourg-s3/mtwa/web/000-default.conf
         dest: /etc/apache2/sites-enabled/
-
+      notify:
+        - Reload Apache 2
+        
     - name: Download ports.conf
       get_url:
         url: https://s3.amazonaws.com/richbourg-s3/mtwa/web/ports.conf
         dest: /etc/apache2/
+      notify:
+        - Reload Apache 2
 
-
-    - name: Restart service Apache
-      service:
-        name: apache2
-        state: reloaded
 
 
     - name: execute install.sh
       shell:
-         cmd: install.sh
+         cmd: /bin/bash install.sh
       args:
         chdir: ./Multi-Tier-App-Demo/
-        executable: /bin/bash
 
-    - name: changes to how Apache operates.
-      shell:
-         cmd: a2enmod mpm_prefork cgi
-      handlers:
-        - name: Reload Apache
-          service:
-            name: apache2
-            state: reloaded
 
-    - name: changes to how Apache operates 2.
-      shell:
-         cmd: a2dismod mpm_event
-      handlers:
-        - name: Reload Apache
-          service:
-            name: apache2
-            state: reloaded
+
+     handlers:
+     - name: Reload Apache 1
+       service:
+         name: apache2
+         state: reloaded
+         
+     - name: Reload Apache 2
+       service:
+         name: apache2
+         state: reloaded         
