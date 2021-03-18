@@ -60,13 +60,13 @@
 
 
 
-     - name: Replace a localhost entry with our own
-       ansible.builtin.lineinfile:
-         path: /etc/mysql/mysql.conf.d/mysqld.cnf
-         regexp: 'bind-address = 127.0.0.1'
-         line: bind-address = *
-       notify: 
-         - name: restart MySql
+    - name: Replace a localhost entry with our own
+      ansible.builtin.lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: 'bind-address = 127.0.0.1'
+        line: bind-address = *
+      notify: 
+        - name: restart MySql
           
   handlers:    
     - name: restart MySql
