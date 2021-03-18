@@ -48,7 +48,7 @@
         cmd: mysql -u root -p root
 
     - name: Simple select query to appdemo db
-      community.mysql.mysql_query:
+      mysql_query:
         login_db: appdemo
         login_user: root
         login_password: root
