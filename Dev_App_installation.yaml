@@ -76,10 +76,7 @@
       args:
         chdir: ./Multi-Tier-App-Demo/
 
-
-
-
-         
+  notify:    
     - name: Reload Apache 2
       service:
         name: apache2
