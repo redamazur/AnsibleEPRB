@@ -35,8 +35,13 @@
       get_url:
         url: https://raw.githubusercontent.com/brichbourg/Multi-Tier-App-Demo/master/sql/create_db_table.sql
         dest: .
-    - name: Copy the root credentials as .my.cnf file
-      template: src=root.cnf.j2 dest=~/.my.cnf mode=0600
+
+    - name: setting default root password
+      mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+        check_implicit_admin: true
+        login_unix_socket: /var/run/mysqld/mysqld.sock
    
     - name: execute install.sh
       shell:
