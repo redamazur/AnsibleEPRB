@@ -42,14 +42,14 @@
 #        url: https://raw.githubusercontent.com/brichbourg/Multi-Tier-App-Demo/master/sql/create_db_table.sql
 #        dest: .
 
-    - name: Create a new database with name 'bobdata'
+    - name: Create a new database with name 'appdemo'
       mysql_db:
-        name: bobdata
+        name: appdemo
         state: present
         login_user: root
         login_password: root
         
-    - name: Simple select query to appdemo db
+    - name: CREATE TABLE demodata_erase_log and demodata_erase_log
       community.mysql.mysql_query:
         login_db: appdemo
         login_user: root
