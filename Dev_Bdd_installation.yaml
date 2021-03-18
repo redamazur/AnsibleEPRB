@@ -1,5 +1,5 @@
 ---
-- hosts: devapp
+- hosts: devbdd
   become: true
   
   vars:
