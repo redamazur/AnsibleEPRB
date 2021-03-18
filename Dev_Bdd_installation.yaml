@@ -69,8 +69,7 @@
         - name: restartMySql
           
   handlers:    
-    - name: restartMySql
+    - name: restartMySql    
       service:
-        name: Mysql
-        state: reloaded      
- 
+        name: mysql
+        state: restarted 
