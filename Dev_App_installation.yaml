@@ -1,5 +1,5 @@
 ---
-- hosts: devweb
+- hosts: devapp
   become: true
 
   vars:
