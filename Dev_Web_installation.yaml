@@ -1,5 +1,5 @@
 ---
-- hosts: 20.71.188.192
+- hosts: devweb
   become: true
 
   vars:
