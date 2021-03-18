@@ -45,7 +45,7 @@
     - name: Create a new database with name 'bobdata'
       mysql_db:
         name: bobdata
-        state: presentlogin_user: root
+        state: present
         login_user: root
         login_password: root
         
