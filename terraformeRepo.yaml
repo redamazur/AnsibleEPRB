@@ -1,9 +1,0 @@
----
-- hosts: localhost 
- # become: true
-  tasks:
-    - name: Git checkout
-      ansible.builtin.git:
-        repo: 'https://github.com/redamazur/FINALPROJECT.git'
-        dest: ./checkout
-#        version: release-0.22
