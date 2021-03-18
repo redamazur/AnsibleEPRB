@@ -86,7 +86,7 @@
 
 
 
-    handlers:
+  handlers:
     - name: Reload Apache 1
       service:
         name: apache2
