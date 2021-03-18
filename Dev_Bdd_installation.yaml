@@ -6,58 +6,58 @@
     mysql_root_pass: mypassword #MySQL Root Password
 
   tasks:
-#    - name: Update apt-get repo and cache
-#      apt: update_cache=yes force_apt_get=yes
-#    - name: Upgrade the OS (apt-get dist-upgrade)
-#      apt:
-#        upgrade: dist
-#
-#
-#    - name: Installation mysql-server
-#      apt:
-#        name: mysql-server
-#    - name: Install the MySQL packages
-#      apt: name={{ item }} 
-#      with_items:
-#        - mysql-server
-#        - mysql-client
-#        - python-mysqldb
-#        - libmysqlclient-dev
-#
-#    - name: Change the authentication plugin of MySQL root user to mysql_native_password
-#      shell: mysql -u root -e 'UPDATE mysql.user SET plugin="mysql_native_password" WHERE user="root" AND host="localhost"'
-#    - name: Flush Privileges
-#      shell: mysql -u root -e 'FLUSH PRIVILEGES'
-#    - name: Set MySQL root password
-#      mysql_user:
-#        login_host: 'localhost'
-#        login_user: 'root'
-#        login_password: ''
-#        name: 'root'
-#        password: 'root'
-#        state: present
-#
-#    - name: Download initial SQL file
-#      get_url:
-#        url: https://raw.githubusercontent.com/brichbourg/Multi-Tier-App-Demo/master/sql/create_db_table.sql
-#        dest: .
-#
-#    - name: Create a new database with name 'appdemo'
-#      mysql_db:
-#        name: appdemo
-#        state: present
-#        login_user: root
-#        login_password: root
-#        
-#    - name: CREATE TABLE demodata_erase_log and demodata_erase_log
-#      community.mysql.mysql_query:
-#        login_db: appdemo
-#        login_user: root
-#        login_password: root
-#        query: 
-#        - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  );
-#        - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  );
-#
+    - name: Update apt-get repo and cache
+      apt: update_cache=yes force_apt_get=yes
+    - name: Upgrade the OS (apt-get dist-upgrade)
+      apt:
+        upgrade: dist
+
+
+    - name: Installation mysql-server
+      apt:
+        name: mysql-server
+    - name: Install the MySQL packages
+      apt: name={{ item }} 
+      with_items:
+        - mysql-server
+        - mysql-client
+        - python-mysqldb
+        - libmysqlclient-dev
+
+    - name: Change the authentication plugin of MySQL root user to mysql_native_password
+      shell: mysql -u root -e 'UPDATE mysql.user SET plugin="mysql_native_password" WHERE user="root" AND host="localhost"'
+    - name: Flush Privileges
+      shell: mysql -u root -e 'FLUSH PRIVILEGES'
+    - name: Set MySQL root password
+      mysql_user:
+        login_host: 'localhost'
+        login_user: 'root'
+        login_password: ''
+        name: 'root'
+        password: 'root'
+        state: present
+
+    - name: Download initial SQL file
+      get_url:
+        url: https://raw.githubusercontent.com/brichbourg/Multi-Tier-App-Demo/master/sql/create_db_table.sql
+        dest: .
+
+    - name: Create a new database with name 'appdemo'
+      mysql_db:
+        name: appdemo
+        state: present
+        login_user: root
+        login_password: root
+        
+    - name: CREATE TABLE demodata_erase_log and demodata_erase_log
+      community.mysql.mysql_query:
+        login_db: appdemo
+        login_user: root
+        login_password: root
+        query: 
+        - CREATE TABLE `demodata` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `name` VARCHAR(100),  `notes` TEXT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`name`)  );
+        - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  );
+
 
 
       - name: Replace a localhost entry with our own
