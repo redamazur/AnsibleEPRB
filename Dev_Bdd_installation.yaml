@@ -25,8 +25,6 @@
     - name: Update mysql root password for all root accounts
       mysql_user: name=root password=root
 
-
-
     - name: Download initial SQL file
       get_url:
         url: https://raw.githubusercontent.com/brichbourg/Multi-Tier-App-Demo/master/sql/create_db_table.sql
@@ -34,7 +32,7 @@
 
     - name: execute install.sh
       shell:
-         cmd: mysql -u root -p root
+        cmd: mysql -u root -p root
 
     - name: Simple select query to appdemo db
       community.mysql.mysql_query:
@@ -46,22 +44,3 @@
           - CREATE TABLE `demodata_erase_log` (  `id` INTEGER NOT NULL AUTO_INCREMENT,  `timestamp` TIMESTAMP,  PRIMARY KEY (`id`),  KEY (`timestamp`)  )
           - CREATE USER 'appdemo'@'%' IDENTIFIED BY 'appdemo'
           - GRANT ALL PRIVILEGES ON appdemo.* to 'appdemo'@'%' WITH GRANT OPTION
-
-
-
-
-  
-    - name: execute install.sh
-      shell:
-         cmd: /bin/bash install.sh
-      args:
-        chdir: ./Multi-Tier-App-Demo/
-
-
-
-
-         
-    - name: Reload Apache 2
-      service:
-        name: apache2
-        state: reloaded   
