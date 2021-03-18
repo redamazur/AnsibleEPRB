@@ -78,11 +78,6 @@
 
 
 
-  handlers:
-    - name: Reload Apache 1
-      service:
-        name: apache2
-        state: reloaded
          
     - name: Reload Apache 2
       service:
