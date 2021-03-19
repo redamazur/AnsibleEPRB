@@ -59,14 +59,14 @@
         url: https://s3.amazonaws.com/richbourg-s3/mtwa/app/000-default.conf
         dest: /etc/apache2/sites-enabled/
       notify:
-        - Reload Apache 2
+        - Reload Apache2
         
     - name: Download ports.conf
       get_url:
         url: https://s3.amazonaws.com/richbourg-s3/mtwa/app/ports.conf
         dest: /etc/apache2/
       notify:
-        - Reload Apache 2
+        - Reload Apache2
 
     - name: Create a directory /etc/mtwa if it does not exist
       ansible.builtin.file:
@@ -93,7 +93,7 @@
 
 
   handlers:    
-    - name: Reload Apache 2
+    - name: Reload Apache2
       service:
         name: apache2
         state: reloaded         
