@@ -11,8 +11,8 @@
         name: apache2
         state: started
         enabled: yes
-      notify: 
-        - name: restartMySql
+     notify: 
+       - name: restartMySql
           
   handlers:    
     - name: restartMySql    
