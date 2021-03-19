@@ -6,9 +6,9 @@
     mysql_root_pass: mypassword #MySQL Root Password
 
   tasks:
-   - name: Gestion du service Apache2
+   - name: Gestion du service mysql
      service:
-        name: apache2
+        name: mysql
         state: started
         enabled: yes
      notify: 
