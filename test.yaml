@@ -1,0 +1,21 @@
+---
+- hosts: Prodapp
+  become: true
+  
+  vars:
+    mysql_root_pass: mypassword #MySQL Root Password
+
+  tasks:
+   - name: Gestion du service Apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      notify: 
+        - name: restartMySql
+          
+  handlers:    
+    - name: restartMySql    
+      service:
+        name: mysql
+        state: restarted 
